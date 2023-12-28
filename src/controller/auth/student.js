@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 
 export const OrganisationSignUp=async (req, res) => {
     try {
-      const { name, email, password, studentclass} = req.body;
+      const { name, email, password, studentclass,OrganisationId} = req.body;
       console.log({ name, email, password,studentclass} );
       // Check if the user already exists
       const existingUser = await Student.findOne({ email });
