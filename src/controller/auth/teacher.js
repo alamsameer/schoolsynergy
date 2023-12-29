@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import Teacher from '../../model/teacher/teacher';
 import jwt from "jsonwebtoken"
 
-export const OrganisationSignUp=async (req, res) => {
+export const TeacherSignUp=async (req, res) => {
     try {
       const { name, email, password,subjects,OrganisationId} = req.body;
       console.log({ name, email, password,subjects} );
@@ -35,7 +35,7 @@ export const OrganisationSignUp=async (req, res) => {
     }
   }
 
-export const OrganisationSignIn=async (req, res) => {
+export const TeacherSignIn=async (req, res) => {
   try {
     const { email, password } = req.body;
     console.log({  email, password} );
