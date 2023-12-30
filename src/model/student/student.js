@@ -14,5 +14,5 @@ const StudentSchema = new Schema({
   class:{type:String,required:true}
 });
 
-const Students=mongoose.model("Students",StudentSchema)
+const Students=mongoose.model("Student",StudentSchema)
 export default Students

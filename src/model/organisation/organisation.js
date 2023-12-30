@@ -18,6 +18,6 @@ const orgSchema=new Schema(
     }
 )
 
-const Organisation=mongoose.model("organisations",orgSchema)
+const Organisation=mongoose.model("Organisation",orgSchema)
 
 export default Organisation

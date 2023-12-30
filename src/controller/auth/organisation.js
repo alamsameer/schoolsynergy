@@ -26,7 +26,7 @@ export const OrganisationSignUp=async (req, res) => {
       const newUserData = await Organisation.create(newUser);
       const role="organisation"
       // Generate a JWT token
-      const token = jwt.sign({ email,role}, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({name,email,role}, process.env.JWT_SECRET, { expiresIn: '1h' });
       // Return the token to the client
       res.status(201).json({ message: 'Organisation registered successfully',token });
     } catch (error) {

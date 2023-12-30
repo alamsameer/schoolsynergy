@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import Teacher from '../../model/teacher/teacher';
 import jwt from "jsonwebtoken"
+import Organisation from "../../model/organisation/organisation.js"
 
 export const TeacherSignUp=async (req, res) => {
     try {

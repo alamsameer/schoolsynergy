@@ -10,4 +10,4 @@ const classSchema = new Schema({
       },
   });
 
-const Classes=mongoose.model("Classes",classSchema)
+const Classes=mongoose.model("Class",classSchema)
