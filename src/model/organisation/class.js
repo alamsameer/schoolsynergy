@@ -5,7 +5,7 @@ const classSchema = new Schema({
       type: String,
       required: true,
     },
-    organization: {
+    organisation: {
         id: Schema.Types.ObjectId,
       },
   });

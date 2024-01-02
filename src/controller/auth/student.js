@@ -24,7 +24,7 @@ export const StudentSignUp=async (req, res) => {
   
       // Add the user to the databaseJJ
       const newTeacherData = await Student.create(newUser);
-      const role="teacher"
+      const role="student"
       // Generate a JWT token
       const token = jwt.sign({ email,role}, process.env.JWT_SECRET, { expiresIn: '1h' });
       // Return the token to the client
@@ -49,7 +49,7 @@ export const StudentSignIn=async (req, res) => {
     if (!isPasswordMatch) {
       return res.status(401).json({ error: 'Incorrect password' });
     }
-    const role="organisation"
+    const role="student"
     // Generate a JWT token
     const token = jwt.sign({ email,role}, process.env.JWT_SECRET, { expiresIn: '1h' }); 
     // Return the token to the client

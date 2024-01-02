@@ -5,6 +5,7 @@ const ExamMarksSchema = new Schema({
       ref: 'Student',
       required: true,
     },
+    organisationId:String,
     examId: {
       type: Schema.Types.ObjectId,
       ref: 'Exam',

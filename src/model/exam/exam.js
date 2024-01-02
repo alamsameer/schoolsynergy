@@ -9,7 +9,7 @@ const ExamSchema = new Schema({
       type: Date,
       required: true,
     },
-    organization: {
+    organisationId: {
         id: Schema.Types.ObjectId,
       },
     subjects: [{

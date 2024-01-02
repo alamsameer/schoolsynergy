@@ -19,19 +19,16 @@ const TeacherSchema = new Schema({
       ref: "Class",
     },
   ],
-  orgid:{
-    type: Schema.Types.ObjectId,
-    ref: 'Organisation', // Reference to the Organisation model
-  },
-  organisationid: {
+  organisationId: {
     type: Schema.Types.ObjectId,
     ref: 'Organisation', // Reference to the Organisation model
   },
   verificationStatus: {
     type: String,
-    enum: ["pending", "verified"],
+    enum: ["pending", "verified","discarded"],
     default: "pending",
   },
+  quiz:[{type:Schema.Types.ObjectId,ref:"quiz"}],
     verificationDate: { type: Date },
     joinigDate: { type: Date },
   });

@@ -20,7 +20,9 @@ export const authenticateOrganisation = (req, res, next) => {
   
       // Attach the decoded user information to the request object for use in route handlers
       req.user = decoded;
-  
+     if(user.role!="organisation"){
+      return res.status(401).json({ error: 'Unauthorized to access ' });
+     }
       // Proceed to the next middleware or route handler
       next();
     } catch (error) {
@@ -44,6 +46,10 @@ export const authenticateOrganisation = (req, res, next) => {
       // Attach the decoded user information to the request object for use in route handlers
       req.user = decoded;
       console.log("teacher decoded",decoded);
+      if(user.role!="teacher"){
+        return res.status(401).json({ error: 'Unauthorized to access ' });
+
+      }
       // Proceed to the next middleware or route handler
       next();
     } catch (error) {
@@ -67,6 +73,9 @@ export const authenticateOrganisation = (req, res, next) => {
   
       // Attach the decoded user information to the request object for use in route handlers
       req.user = decoded;
+      if(user.role!="student"){
+        return res.status(401).json({ error: 'Unauthorized to access ' });
+      }
   
       // Proceed to the next middleware or route handler
       next();
@@ -90,7 +99,9 @@ export const authenticateOrganisation = (req, res, next) => {
   
       // Attach the decoded user information to the request object for use in route handlers
       req.user = decoded;
-  
+     if(user.role!="parent"){
+      return res.status(401).json({ error: 'Unauthorized to access ' });
+     }
       // Proceed to the next middleware or route handler
       next();
     } catch (error) {

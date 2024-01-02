@@ -8,10 +8,10 @@ const StudentSchema = new Schema({
     unique: true,
     match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, // Example regex for basic email validation
   },
-  organization: {
+  organizationId: {
     id: Schema.Types.ObjectId,
   },
-  class:{type:String,required:true}
+  class:{type:Schema.Types.ObjectId,ref:"",required:true}
 });
 
 const Students=mongoose.model("Student",StudentSchema)

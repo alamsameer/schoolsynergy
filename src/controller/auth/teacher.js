@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 export const TeacherSignUp = async (req, res) => {
   try {
-    const { name, email, password, subjects, OrganisationId } = req.body;
+    const { name, email, password, subjects, organisationid,qualifications } = req.body;
     console.log({ name, email, password, subjects, OrganisationId });
     // Check if the user already exists
     const existingUser = await Teacher.findOne({ email });
@@ -15,14 +15,16 @@ export const TeacherSignUp = async (req, res) => {
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-    const id =new mongoose.Types.ObjectId(OrganisationId);
+    const id =new mongoose.Types.ObjectId(organisationid);
     console.log("id ",id);
     // Create a new user object
     const newUser = {
       name,
       email,
       password: hashedPassword,
-      profile: { subjectsTaught: subjects },
+      profile: { 
+        qualifications:qualifications,
+        subjectsTaught: subjects },
       organisationid:id
     };
 
@@ -67,41 +69,5 @@ export const TeacherSignIn = async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ error: "Error logging in user" });
-  }
-};
-
-
-export const getAllTeachersWithOrganization = async (req, res) => {
-  try {
-    // Use Mongoose populate to get all teachers with organization details
-    const teachers = await Teacher.find().populate('organizationid');
-
-    // Respond with the list of teachers
-    res.status(200).json({ teachers });
-  } catch (error) {
-    // Handle errors, e.g., database error, etc.
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-export default getAllTeachersWithOrganization;
-
-export const AddSubjectToTeacher = async (req, res) => {
-  try {
-    const { email, subject } = req.body;
-    const updatedTeacher = await Teacher.findOneAndUpdate(
-      { email },
-      { $push: { "profile.subjectsTaught": subject } },
-      { new: true }
-    );
-    if (!updatedTeacher) {
-      res.status(404).json({ message: "Teacher does not exist" });
-    }
-    console.log(updatedTeacher);
-    res.status(201).json(updatedTeacher);
-  } catch (e) {
-    console.log(error);
-    res.status(500).json({ error: "Server Error" });
   }
 };
