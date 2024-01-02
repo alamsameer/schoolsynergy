@@ -7,7 +7,7 @@ const quizSchema = new Schema(
       },
       teacherId: {
         type: Schema.Types.ObjectId,
-        ref: "Teachers",
+        ref: "Teacher",
       },
       questions: [
         {

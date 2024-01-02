@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
-import Organisation from '../../model/organisation/organisation';
+import Organisation from '../../model/organisation/organisation.js';
 import jwt from "jsonwebtoken"
 
 export const OrganisationSignUp=async (req, res) => {
     try {
       const { name, email, password} = req.body;
-      console.log({ name, email, password,url} );
+      console.log({ name, email, password} );
       // Check if the user already exists
       const existingUser = await Organisation.findOne({ email });
       if (existingUser) {
@@ -53,7 +53,7 @@ export const OrganisationSignIn=async (req, res) => {
     // Generate a JWT token
     const token = jwt.sign({ email,role}, process.env.JWT_SECRET, { expiresIn: '1h' }); 
     // Return the token to the client
-    res.json({ message: 'Organisation logged in successfully',token ,user });
+    res.status(200).json({ message: 'Organisation logged in successfully',token ,user });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ error: 'Error logging in user' });
