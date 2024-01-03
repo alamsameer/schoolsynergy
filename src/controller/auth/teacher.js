@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 export const TeacherSignUp = async (req, res) => {
   try {
-    const { name, email, password, subjects, organisationid,qualifications } = req.body;
+    const { name, email, password, subjects, OrganisationId,qualifications } = req.body;
     console.log({ name, email, password, subjects, OrganisationId });
     // Check if the user already exists
     const existingUser = await Teacher.findOne({ email });
@@ -15,8 +15,6 @@ export const TeacherSignUp = async (req, res) => {
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-    const id =new mongoose.Types.ObjectId(organisationid);
-    console.log("id ",id);
     // Create a new user object
     const newUser = {
       name,
@@ -25,7 +23,7 @@ export const TeacherSignUp = async (req, res) => {
       profile: { 
         qualifications:qualifications,
         subjectsTaught: subjects },
-      organisationid:id
+      organisationId:new mongoose.Types.ObjectId(OrganisationId)
     };
 
     // Add the user to the databaseJJ

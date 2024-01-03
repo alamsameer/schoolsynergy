@@ -1,6 +1,7 @@
 import TeacherModel from "../../model/teacher/teacher.js"
 import ClassModel from "../../model/class/class.js"
 import quizModel from "../../model/quiz/quiz.js"
+import Organisation from "../../model/organisation/organisation.js";
 
 
 export  const verifyTeacherByOrganisationId = async (req,res) => {
@@ -13,7 +14,8 @@ export  const verifyTeacherByOrganisationId = async (req,res) => {
         );
        res.status(201).json({message:"Teacher Verified",teacher})
     } catch (error) {
-        throw new Error("Failed to verify teacher by organisation ID");
+        res.status(500).json({message:"server error"})
+
     }
 };
 
@@ -21,12 +23,51 @@ export  const listTeachersByOrganisationId = async (req,res) => {
     const {organisationId}=req.body
     try {
         const teachers = await TeacherModel.find({ organisationId });
-        return teachers;
+        res.status(200).json(teachers)
     } catch (error) {
-        throw new Error("Failed to list teachers by organisation ID");
+        res.status(500).json({message:"server error"})
     }
 };
+export const addClassToOrg=async(req,res)=>{
+    const {organisationId,classToAdd}=req.body;
+    try{
+        const isClass= await ClassModel.findOne({name:classToAdd,organisationId})
 
+        if(!isClass){
+            const createdClass=await ClassModel.create({name:classToAdd,organisationId})
+            const classId=createdClass._id
+            const organisation=await Organisation.findOneAndUpdate({_id:organisationId},{$push:{"classes":classId}},{new:true})
+           return  res.status(201).json({message:"class created",organisation})
+        }
+        res.status(409).json({message:"class alredy can't create same class twice "})
+    }
+    catch(error){
+        console.log(error.message);
+        res.status(500).json({message:"server error"})
+    }
+
+}
+
+// get all class
+export const getAllClassOfOrganisation=async(req,res)=>{
+    const {organisationId}=req.body;
+    try{
+        const getAllClass= await ClassModel.find({organisationId})
+        console.log("getAllClass.length()",getAllClass.length,getAllClass.length < 1);
+        if(getAllClass.length < 1){
+           return res.status(404).json({message:"you have not created any class"})
+        }
+        res.status(200).json({
+            message:"List of classes belongto your organisation",
+            getAllClass
+        })
+    }catch(error){
+        console.log(error.message);
+        res.status(500).json({message:"server error"})
+
+    }
+
+}
 // assign classes-subject to the teacher
 
 export const assignSubjectToTeacher=async (req,res)=>{
@@ -42,7 +83,7 @@ export const assignSubjectToTeacher=async (req,res)=>{
 
             const orgclass= await ClassModel.findOneAndUpdate({id:classId,organisationId:organisationId},
                 {$push:{"subjects":{teacher:teacherId,subject:subjectId}}})
-            res.status(201).json({message:"Subject assigned to teacher",orgclass})
+           return  res.status(201).json({message:"Subject assigned to teacher",orgclass})
         }
         res.status(409).json({ message: 'teacher and subject already exists.' });
 
