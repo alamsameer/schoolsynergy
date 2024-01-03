@@ -10,6 +10,8 @@ import {
   appointClassTeacher,
   removeClassTeacher,
   listQuizByTeacher,
+  addClassToOrg,
+  getAllClassOfOrganisation
 } from "../controller/organisation/orgtoteacher.js";
 
 const route = Router();
@@ -21,7 +23,15 @@ route.post("/signin", OrganisationSignIn);
 route.post("/verify-teacher", verifyTeacherByOrganisationId);
 
 // List Teachers by Organisation ID
-route.post("/list-teachers", listTeachersByOrganisationId);
+route.get("/list-teachers", listTeachersByOrganisationId);
+
+// add class to  organisation
+
+route.post("/add-class",addClassToOrg)
+
+// get all class that belong to  organisation
+
+route.get("/classes",getAllClassOfOrganisation)
 
 // Assign Subject to Teacher
 route.post("/assign-subject", assignSubjectToTeacher);
