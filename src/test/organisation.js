@@ -27,7 +27,7 @@ describe("testing org onboarding signup", () => {
         expect(response.statusCode).to.equal(201);
     });     
 });
-
+// testing for organisation sign in 
 describe('OrganisationSignIn', () => {
     it('should return a 404 status if Organisation is not found', async () => {
       const response = await request(app)
@@ -80,6 +80,7 @@ describe('OrganisationSignIn', () => {
       expect(response.body).to.deep.equal({ error: 'Error logging in user' });
     });
   });
+// testing for 
 
 after(async () => {
     // Clean up or disconnect from the database after running tests

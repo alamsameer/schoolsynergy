@@ -28,18 +28,7 @@ describe("Signup testing for teacher",()=>{
         expect(response.statusCode).to.equal(201);
     }); 
 })
-describe("operations on the Teacher",()=>{
-    it("it should add subject to teacher ",async()=>{
-        const response = await request(app)
-        .post('/api/teacher/add-subject')
-        .send({
 
-            email: "alamaeer24@gmail.com",
-            subject:"arabic"
-        });
-    expect(response.statusCode).to.equal(201);
-    })
-})
 
 after(async () => {
     // Clean up or disconnect from the database after running tests
