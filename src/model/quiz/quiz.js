@@ -1,3 +1,4 @@
+import mongoose,{ Schema } from "mongoose";
 const quizSchema = new Schema(
     {
       title: {
@@ -20,3 +21,5 @@ const quizSchema = new Schema(
   );
   
 const quiz = mongoose.model("Quiz", quizSchema);
+
+export default quiz

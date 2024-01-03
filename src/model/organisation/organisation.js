@@ -11,7 +11,7 @@ const orgSchema=new Schema(
           },
         password:{type:String,required:true},
         teacher:[{type:Schema.Types.ObjectId}],
-        verificationRequest:[{teacher:Schema.Types.ObjectId,ref:'Teacher'}],
+        verificationRequest:[{teacher:{type:Schema.Types.ObjectId, ref:'Teacher'}}],
         subjects:[{type:Schema.Types.ObjectId,ref:"Subject"}],
         classes: [{
             type: Schema.Types.ObjectId,
