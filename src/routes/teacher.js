@@ -4,7 +4,6 @@ import {authenticateTeacher} from "../middleware/auth/authenticate.js"
 const route=Router()
 
 route.post("/signup",TeacherSignUp)
-
 route.post("/signin",TeacherSignIn)
 
 export default route;

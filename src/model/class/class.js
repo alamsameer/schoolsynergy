@@ -1,7 +1,7 @@
 import mongoose,{Schema} from "mongoose";
 
 const classSchema =new Schema({
-    name: String,
+    name: {type:String,required:true},
     classTeacher: {
         type: Schema.Types.ObjectId,
         ref: 'Teacher'

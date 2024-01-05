@@ -98,10 +98,11 @@ export const assignSubjectToTeacher=async (req,res)=>{
 export const appointClassTeacher=async(req,res)=>{
     const {teacherId,classId,organisationId}=req.body;
     try{
-        await  ClassModel.findOneAndUpdate({
+       const updadtedClass= await  ClassModel.findOneAndUpdate({
             _id:classId,
             organisationId:organisationId
         },{classTeacher:teacherId})
+        res.status(201).json({message:"class teacher Added",updadtedClass})
     }catch(error){
         res.status(500).json({message:"server error"})
     }
