@@ -6,9 +6,20 @@ const quizSchema = new Schema(
         minlength: 4,
         required: true,
       },
+      subjectId:{
+        type:Schema.Types.ObjectId,
+        ref:"Subject",
+        required:true
+      },
+      classId:{
+        type:Schema.Types.ObjectId,
+        ref:"Class",
+        required:true
+      },
       teacherId: {
         type: Schema.Types.ObjectId,
         ref: "Teacher",
+        required: true,
       },
       questions: [
         {

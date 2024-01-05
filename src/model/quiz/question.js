@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const questionSchema = new Schema(
 	{
@@ -6,11 +6,17 @@ const questionSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: "Quiz",
 		},
+		organisationId: {
+			type: Schema.Types.ObjectId,
+			ref: "Organisation",
+			required: true,
+		},
 		teacherId: {
 			type: Schema.Types.ObjectId,
-			ref: "User",
+			ref: "Teacher",
+			required:true
 		},
-		title: {
+		question: {
 			type: String,
 			required: true,
 		},
@@ -29,5 +35,4 @@ const questionSchema = new Schema(
 	},
 	{ timestamps: true }
 );
-
-module.exports = mongoose.model("Question", questionSchema);
+export default mongoose.model("Question", questionSchema);
