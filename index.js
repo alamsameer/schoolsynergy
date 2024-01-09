@@ -4,6 +4,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import OrganisationRoutes from "./src/routes/organisation.js";
 import TeacherRoutes from  "./src/routes/teacher.js"
+import QuizRoutes from "./src/routes/quiz.js"
 const app =express();
 
 dbmain().then(()=>{ console.log("db connected");}).catch((e)=>{ console.log(e);console.log("db not connected");})
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/organisation",OrganisationRoutes);
 app.use("/api/teacher",TeacherRoutes)
+app.use('/api/quiz', QuizRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

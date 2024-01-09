@@ -11,6 +11,11 @@ const questionSchema = new Schema(
 			ref: "Organisation",
 			required: true,
 		},
+		subjectId:{
+			type:Schema.Types.ObjectId,
+			ref:"Subject",
+			required:true
+		},
 		teacherId: {
 			type: Schema.Types.ObjectId,
 			ref: "Teacher",
