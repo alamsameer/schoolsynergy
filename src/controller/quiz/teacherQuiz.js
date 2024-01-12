@@ -131,7 +131,7 @@ export const getQuizByTeacherIdAndClassId = async (req, res) => {
 export const getQuizBySubjectIdAndClassId = async (req, res) => {
     const { subjectId, classId } = req.params;
     try {
-        const quizzes = await quizModel.find({ subjectId, classId });
+        const quizzes = await quizModel.find({ subjectId, classId }).populate("questions");
         res.status(200).json(quizzes);
     } catch (error) {
         res.status(500).json({ error: error.message });

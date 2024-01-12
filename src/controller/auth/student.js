@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
-import Student from '../../model/student/student';
+import Student from '../../model/student/student.js';
 import jwt from "jsonwebtoken"
 
 export const StudentSignUp=async (req, res) => {
     try {
-      const { name, email, password, studentclass,OrganisationId} = req.body;
+      const { name, email, password, studentclass,organisationId} = req.body;
       console.log({ name, email, password,studentclass} );
       // Check if the user already exists
       const existingUser = await Student.findOne({ email });
@@ -20,10 +20,12 @@ export const StudentSignUp=async (req, res) => {
         name,
         email,
         password: hashedPassword,
+        organisationId,
+        class:studentclass
       };
   
       // Add the user to the databaseJJ
-      const newTeacherData = await Student.create(newUser);
+      const newStudentData = await Student.create(newUser);
       const role="student"
       // Generate a JWT token
       const token = jwt.sign({ email,role}, process.env.JWT_SECRET, { expiresIn: '1h' });

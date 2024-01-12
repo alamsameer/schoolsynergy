@@ -11,9 +11,11 @@ const attemptSchema = new Schema(
 				isCorrect: { type: Boolean, default: false },
 			},
 		],
-		totalScore: { type: number }
+		totalScore: { type:Number}
 	},
 	{ timestamps: true }
 );
 
 const Attempt=mongoose.model("Attempt", attemptSchema);
+
+export default Attempt;
