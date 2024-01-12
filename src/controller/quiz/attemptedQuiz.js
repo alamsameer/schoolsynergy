@@ -57,7 +57,6 @@ export const studentAttempt = async (req, res) => {
       return res.status(409).json({ message: "Already Attempted" });
     }
     const quiz = await quizModel.find({ _id:quizId}).populate("questions");
-console.log();
     const attemptAnsQues = handleQuestions(quiz[0].questions, attemptQuestions);
 
     const studentAttempt = await attemptModel.create({
