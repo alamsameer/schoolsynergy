@@ -58,7 +58,6 @@ export const studentAttempt = async (req, res) => {
     }
     const quiz = await quizModel.find({ _id:quizId}).populate("questions");
     const attemptAnsQues = handleQuestions(quiz[0].questions, attemptQuestions);
-
     const studentAttempt = await attemptModel.create({
       quizId,
       studentId,
