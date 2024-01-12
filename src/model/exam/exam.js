@@ -13,7 +13,7 @@ const ExamSchema = new Schema({
         id: Schema.Types.ObjectId,
       },
     subjects: [{
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
     }],
     associatedClasses: [{
