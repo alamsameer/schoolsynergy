@@ -23,3 +23,5 @@ const ExamSchema = new Schema({
   });
 
   const exam=mongoose.model("Exams",ExamSchema)
+
+   export default exam

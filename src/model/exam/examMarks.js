@@ -5,7 +5,7 @@ const ExamMarksSchema = new Schema({
       ref: 'Student',
       required: true,
     },
-    organisationId:String,
+    organisationId:{type:Schema.Types.ObjectId,required:true},
     examId: {
       type: Schema.Types.ObjectId,
       ref: 'Exam',
@@ -13,7 +13,7 @@ const ExamMarksSchema = new Schema({
     },
     marks: [{
       subject: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true,
       },
       marksObtained: {

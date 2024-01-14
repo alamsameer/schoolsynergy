@@ -14,6 +14,8 @@ import {
   getAllClassOfOrganisation
 } from "../controller/organisation/orgtoteacher.js";
 
+import { createExam } from "../controller/exam/exam.js";
+
 const route = Router();
 
 route.post("/signup", OrganisationSignUp);
@@ -44,6 +46,9 @@ route.post("/remove-class-teacher", removeClassTeacher);
 
 // List Quizzes by Teacher
 route.post("/list-quiz-by-teacher", listQuizByTeacher);
+
+// create exam 
+route.post("/create-exam",createExam)
 
 
 export default route;
